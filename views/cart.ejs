@@ -1,0 +1,52 @@
+<%- include('parts/header')%>
+<%- include('parts/navbar')%>
+
+<div class="container">
+
+    <% if(items.length === 0) { %>
+               <p class="alert alert-danger"></p>
+
+        <% } else { %>
+                 <table>
+                     <thead>
+                         <td>no</td>
+                         <td>Product name</td>
+                         <td>Price</td>
+                         <td>Amount</td>
+                         <td>Total</td>
+                         <td></td>
+                     </thead>
+                     <tbody>
+                         <% for (let i=0; i<items.length; i++) { %>
+                                <tr>
+                                    <td> <%= i+1%> </td>
+                                    <td> <%= items[i].name%> </td>
+                                    <td> <%= items[i].price%> $ </td>
+                                        <form method="POST">
+                                            <td>
+                                                <input type="test" name="amount" class="form-control" value="<%= items[i].amount %>">
+                                            </td> 
+                                            <td> <%= items[i].price * items[i].amount %> $ </td>
+                                            <td>
+                                                <input type="hidden" name="cartId" value="<%= items[i]._id %>">
+                                                <input type="submit" class="btn btn-success" value="Save" formaction="/cart/save">
+                                                <input type="submit" class="btn btn-success" value="Delete" formaction="/cart/delete">
+                                            </td>
+                                        </form>
+                                   
+
+
+
+                                </tr>
+
+
+
+                            <%}%>
+                     </tbody>
+                 </table>
+
+
+            <% } %>
+</div>
+
+<%- include('parts/footer')%>
